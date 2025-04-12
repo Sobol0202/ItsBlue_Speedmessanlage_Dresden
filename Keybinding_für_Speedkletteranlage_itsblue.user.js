@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Keybinding für Speedkletteranlage "itsblue"
-// @version      1.0
+// @version      1.1
 // @description  Legt Hotkeybindings auf Ready und At-Your-Marks in der Weboberfläche der Zeitmessanlage Itsblue
 // @author       Sobol
 // @match        http://10.4.99.1/
@@ -22,6 +22,18 @@
                 console.warn('READY-Button nicht gefunden');
             }
             e.preventDefault(); // Verhindert Scrollen der Seite mit Leertaste
+        }
+
+        // Taste R -> Reset Button
+        if (e.key.toLowerCase() === 'r') {
+            const marksButton = Array.from(document.querySelectorAll('button'))
+                .find(btn => btn.textContent.trim() === 'RESET');
+            if (marksButton) {
+                marksButton.click();
+                console.log('"Reset"-Button geklickt');
+            } else {
+                console.warn('"Reset"-Button nicht gefunden');
+            }
         }
 
         // Taste 5 -> At your Marks! Button
